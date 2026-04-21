@@ -22,7 +22,7 @@ Le choix retenu est celui du projet **Automatic Gate System**. Le groupe s'est a
 
 Une première répartition des tâches a également été définie. Ma responsabilité porte sur :
 - la détection de présence par un capteur ultrason ;
-- la logique du focntionnement du systèm ;
+- la logique du focntionnement du système ;
 - les conditions d'ouverture et de fermeture de la barrière.
 
 Cette séance a permis de définir plus précisément mon rôle dans le projet, centré sur la partie logique et décisionnelle du système.
