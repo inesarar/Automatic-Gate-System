@@ -28,3 +28,47 @@ Une première répartition des tâches a également été définie. Ma responsab
 Cette séance a permis de définir plus précisément mon rôle dans le projet, centré sur la partie logique et décisionnelle du système.
 
 ---
+
+## Séance 3 - Validation du principe de détection et commande du servomoteur
+
+Cette séance a été consacrée à la mise en fonctionnement d'un premier prototype à partir du code fourni.
+
+Le travail réalisé a porté sur l'interaction entre : 
+- le **capteur ultrason**, chargé de mesurer la distance ;
+- le **servomoteur**, chargé de simuler l'ouverture et la fermeture de la barrière.
+
+## Câblage réalisé
+
+Le montage utilisé pendant cette séance reposait sur les branchements suivants :
+
+### Servomoteur 
+- fil **marron** relié à **GND**
+- fil **jaune** relié à **D5**
+- fil **rouge** relié à **V_bus**
+
+### Capteur ultrason 
+- **GND** relié à **GND**
+- **ECHO** relié à **A2**
+- **TRIG** relié **A3**
+- **VCC** relié à **V_bus**
+
+Ces branchements ont permis de relier correctement les deux composants à la carte afin de tester la détection de présence et la commande du servomoteur.
+
+## Fonctionnement observé
+
+Le fonctionnement observé est le suivant :
+- lorsque la distance mesurée devient **inférieure à 10 cm**, une présence est détectée ;
+- le servomoteur effectue alors une rotation de **0 à 90 degrés**, correspant à l'ouverture de la barrière ;
+- après un délai défini dans le programme, le servomoteur revient de **90 à 0 degré**, correspondant à la fermeture.
+
+L'analyse du **moniteur série** a également permis de confirmer le comportement du capteur :
+- en présence d'un objet proche, les valeurs mesurées sont faibles ;
+- en l'absence d'objet proche, les valeurs remontent à des valeurs plus élvées.
+
+## Ma contribution dans cette séance
+
+Dans le cadre de ma partie, cette séance a principalement permis de valider la logique du système à partir de la condition :
+
+```cpp
+if(distance < 10.00) 
+
