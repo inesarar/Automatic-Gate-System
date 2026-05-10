@@ -70,5 +70,32 @@ L'analyse du **moniteur série** a également permis de confirmer le comportemen
 Dans le cadre de ma partie, cette séance a principalement permis de valider la logique du système à partir de la condition :
 
 ```cpp
-if(distance < 10.00) 
+// Si la distance mesurée par le capteur ultrason est inférieure à 10 cm,
+// on considère qu'un véhicule est présent devant la barrière.
+if (distance < 10.00) {
+    Serial.println("Présence détectée");
 
+    // Ouverture de la barrière : le servomoteur passe de 0° à 90°
+    for (pos = 0; pos <= 90; pos += 1) {
+        myservo.write(pos);
+        delay(6);
+    }
+
+    // La barrière reste ouverte pendant 5 secondes
+    delay(5000);
+
+    // Fermeture de la barrière : le servomoteur revient de 90° à 0°
+    for (pos = 90; pos >= 0; pos -= 1) {
+        myservo.write(pos);
+        delay(6);
+    }
+}
+else {
+    // Si aucun véhicule n'est détecté à moins de 10 cm,
+    // la barrière reste fermée.
+    Serial.println("Aucune présence détectée");
+} 
+```
+
+Cette condition représente la logique principale du système.  
+Le capteur ultrason mesure la distance en continu. Lorsque cette distance devient inférieure à 10 cm, le programme considère qu’un véhicule est présent devant la barrière. Le servomoteur est alors commandé pour ouvrir la barrière, attendre quelques secondes, puis la refermer automatiquement.
